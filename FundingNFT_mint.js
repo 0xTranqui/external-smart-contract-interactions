@@ -28,8 +28,8 @@ async function main() {
     const mint = await FundingNFTContract.mint(        
         "0x153D2A196dc8f1F6b9Aa87241864B3e4d4FEc170", 
         0, 
-        1000000000000,
-        3800000
+        2626550,
+        1
         );
     await mint.wait();
     console.log("Transaction successsful, check etherscan for confirmation.");

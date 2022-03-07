@@ -4,7 +4,7 @@
 //3 constants below connect to your .env file
 const API_KEY = process.env.API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const CONTRACT_ADDRESS = process.env.DAI_CONTRACT_ADDRESS;
+const CONTRACT_ADDRESS = process.env.FUNDING_NFT_CONTRACT_ADDRESS;
 
 //initiates package.json file which holds contract abi key
 const contract = require("./FundingNFT.json");
@@ -17,21 +17,21 @@ const signer = new ethers.Wallet(PRIVATE_KEY, alchemyProvider);
 
 // Contract
 ///contract.abi reads target contract specific abi key within ethers,Contract fucntion
-const daiApprovalContract = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
+const FundingNFTContract = new ethers.Contract(CONTRACT_ADDRESS, contract.abi, signer);
 
-//DAI approval takes in the approve parameters from FundingNFT contract ABI  parameters are as folows: 1) _spender (address) 2) _value (uint256)
-/*
+//FundingNFT addType parameters are as follows:
+// 1) newTypeId (uint128) 2) limit (uint64) 3) minamtperSec (uint128)
+//to figure out desired amt per second, define your desired DAI received per month and divide that by 2626560 (# of seconds per month)
 
-const _spender = "0x153D2A196dc8f1F6b9Aa87241864B3e4d4FEc170";
-const _value = "10"
-*/
+
 
 async function main() {
-    const approve = await daiApprovalContract.approve(        
-        "0x153D2A196dc8f1F6b9Aa87241864B3e4d4FEc170", 
-        2626550, 
+    const addType = await FundingNFTContract.addType(        
+        0, 
+        10,
+        1
         );
-    await approve.wait();
+    await addType.wait();
     console.log("Transaction successsful, check etherscan for confirmation.");
 }
 

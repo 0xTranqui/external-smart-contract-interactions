@@ -30,7 +30,7 @@ const IPFS_hash = "bafkreigluzcmirlil76qn7kxfvsha42mphohrnyfxhviujxjwiheeimrbe";
 
 async function main() {
     const newProject = await radicleRegistryContract.newProject(        
-        "ecoDrips", 
+        "ecoDrips2", 
         "EDRIPS", 
         "0x153D2A196dc8f1F6b9Aa87241864B3e4d4FEc170", 
         "bafkreigluzcmirlil76qn7kxfvsha42mphohrnyfxhviujxjwiheeimrbe"
